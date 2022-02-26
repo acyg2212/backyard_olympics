@@ -7,6 +7,7 @@ from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager, current_user
 
 from backend.models import db, User
+from backend.API.user_routes import user_routes
 
 app = Flask(__name__)
 
