@@ -10,7 +10,7 @@ from backend.models import db, User
 from backend.API.user_routes import user_routes
 
 app = Flask(__name__)
-
+db.init_app(app)
 login_manager = LoginManager(app)
 CSRFProtect(app)
 
