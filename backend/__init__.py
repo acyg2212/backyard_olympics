@@ -5,12 +5,15 @@ from flask_cors import CORS
 from backend.config import Config
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager, current_user
-
+from flask_migrate import Migrate
 from backend.models import db, User
 from backend.API.user_routes import user_routes
 
 app = Flask(__name__)
 db.init_app(app)
+migrate = Migrate(app, db)
+app.config.from_object(Config)
+app.register_blueprint(user_routes, url_prefix='/api/users')
 login_manager = LoginManager(app)
 CSRFProtect(app)
 

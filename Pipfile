@@ -12,6 +12,9 @@ flask-sqlalchemy = "*"
 werkzeug = "*"
 psycopg2-binary = "*"
 sqlalchemy = "*"
+python-dotenv = "*"
+alembic = "*"
+flask-migrate = "*"
 
 [dev-packages]
 
