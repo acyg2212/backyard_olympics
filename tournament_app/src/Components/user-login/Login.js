@@ -4,7 +4,7 @@ import UserContext from '../../UserContext'
 
 function LogIn(props) {
     let navigate = useNavigate();
-    const [usernameoremail, setUsernameoremail] = useState("dougthepug");
+    const [usernameoremail, setUsernameoremail] = useState("acyg22");
     const [password, setPassword] = useState("password");
     const [errors, setErrors] = useState([]);
     const { fetchWithCSRF, setCurrentUserId, setCurrentUser } = useContext(UserContext);

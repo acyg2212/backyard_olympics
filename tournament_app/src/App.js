@@ -65,7 +65,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const response = await fetch('/restore')
+      const response = await fetch('/api/csrf/restore')
       const data = await response.json()
       const { current_user_id, current_user } = data
       setCurrentUserId(current_user_id)
