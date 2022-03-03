@@ -64,16 +64,35 @@ function App() {
   }, [])
 
   useEffect(() => {
-    (async () => {
-      const response = await fetch('/api/csrf/restore')
-      const data = await response.json()
-      const { current_user_id, current_user } = data
-      setCurrentUserId(current_user_id)
-      setCurrentUser(current_user)
-      setLoading(false)
-    })()
+    async function restoreCSRF() {
+      const response = await fetch('/api/csrf/restore', {
+        method: 'GET',
+        credentials: 'include'
+      });
+      if (response.ok) {
+        const authData = await response.json();
+        setFetchWithCSRF(() => {
+          return (resource, init) => {
+            if (init.headers) {
+              init.headers['X-CSRFToken'] = authData.csrf_token;
+            } else {
+              init.headers = {
+                'X-CSRFToken': authData.csrf_token
+              }
+            }
+            return fetch(resource, init);
+          }
+        });
+        if (authData.current_user_id) {
 
-  }, [])
+          setCurrentUserId(authData.current_user_id)
+        }
+      }
+      setLoading(false)
+    }
+    restoreCSRF();
+  }, []);
+
 
 
   return (

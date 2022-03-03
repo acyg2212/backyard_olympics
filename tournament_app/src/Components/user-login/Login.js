@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import UserContext from '../../UserContext'
+import "./Login.css"
 
 function LogIn(props) {
     let navigate = useNavigate();
@@ -15,8 +16,8 @@ function LogIn(props) {
 
         // Make the following an IIFE?
         async function loginUser() {
-            const response = await fetchWithCSRF(`/api/session/`, {
-                method: 'PUT',
+            const response = await fetchWithCSRF(`/api/users/login`, {
+                method: 'POST',
                 headers: {
                     "Content-Type": "application/json",
                 },
@@ -39,27 +40,27 @@ function LogIn(props) {
         loginUser();
     }
     return (
-        <div className="authContain">
+        <div className="authContain container">
             <div className="authForm">
                 <div className="authFormDiv">
-                    <h1 style={{
-                        margin: `22px auto 12px`,
-                        fontSize: `3em`,
-                        height: `20px`,
-                        marginBlockStart: `1em`,
-                        marginBlockEnd: `1em`
-                    }}>Backyard Olympics</h1>
-
+                    <h1 className="text-center multicolortext">
+                        Backyard Olympics
+                    </h1>
+                    <div class="signup-link-div">
+                        <p className="form-p text-center">Sign in below or</p>
+                        <a className="form-link" href='/sign-up'>create an account.</a>
+                    </div>
                     <div className="authFormInnerWrap">
                         <form onSubmit={submitForm}>
-                            {errors.length ? errors.map((err) => <li key={err} color="red">{err}</li>) : ''}
+                            {errors.length ? errors.map((err) => <li key={err} style={{ color: "red" }}>{err}</li>) : ''}
                             Username or email
                             <input
                                 type="text"
                                 placeholder="Username or email"
                                 value={usernameoremail}
                                 onChange={(e) => setUsernameoremail(e.target.value)}
-                                name="usernameoremail" />
+                                name="usernameoremail"
+                                className='form-control' />
                             Password
                             <input
                                 type="password"
@@ -67,19 +68,21 @@ function LogIn(props) {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 name="password"
+                                className='form-control'
                             />
-                            <button type="submit" className="button has-background-link has-text-white" style={{
+                            <button type="submit" className="btn btn-block btn-primary" style={{
                                 height: `2rem`,
                                 paddingLeft: `.5em`,
                                 paddingRight: `.5em`,
-                                margin: `8px 40px`,
+                                marginTop: '15px',
                                 fontWeight: `600`
-                            }}>Login</button>
+                            }
+                            }>Login</button>
                         </form>
                     </div>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

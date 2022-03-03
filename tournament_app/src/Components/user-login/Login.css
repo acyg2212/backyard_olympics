@@ -1,0 +1,31 @@
+.authForm{
+    margin-top: 155px;
+}
+
+.multicolortext{
+    
+    background-image: linear-gradient(to left, violet, indigo, green, blue, yellow, orange, red);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+      
+}
+
+.form-p{
+    margin-bottom: 0;
+    margin-top:0;
+    font-weight: bold;
+}
+
+.form-link{
+    margin-bottom: 5px;
+    text-decoration: underline;
+}
+
+.signup-link-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
