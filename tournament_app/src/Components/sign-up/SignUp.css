@@ -1,0 +1,23 @@
+.signup-header{
+    margin-top: 100px;
+}
+
+.login-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.multicolortext{
+    
+    background-image: linear-gradient(to left, violet, indigo, green, blue, yellow, orange, red);
+    -webkit-background-clip: text;
+    -moz-background-clip: text;
+    background-clip: text;
+    color: transparent;
+      
+}
+
+.button-signin{
+    margin-top: 10px;
+}

@@ -108,7 +108,7 @@ function App() {
                       <Route exact path='/' element={<HomePage />} />
                     </Route>
                     <Route exact path="/login" element={<LogIn />} />
-
+                    <Route exact path="/sign-up" element={<SignUp />} />
                     <Route path="/add-team" element={<AddTeam />} />
                     <Route path="/teams" element={<Teams />} />
                     <Route path="/add-event" element={<AddEvent />} />

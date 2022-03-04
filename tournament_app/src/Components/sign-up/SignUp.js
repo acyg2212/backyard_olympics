@@ -1,20 +1,21 @@
 import React, { useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import "./SignUp.css"
 import UserContext from '../../UserContext';
 // let history = useHistory();
 
 
 const SignUp = props => {
-    const [email, setEmail] = useState('');
-    const [username, setUsername] = useState('');
-    const [canfollow, setCanfollow] = useState(false);
-    const [password, setPassword] = useState('');
-    const [password2, setPassword2] = useState('')
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [password2, setPassword2] = useState("")
     // const token = useSelector(state => state.authentication.token);
     // const dispatch = useDispatch();
     const { fetchWithCSRF, setCurrentUserId, setCurrentUser } = useContext(UserContext);
     const [errors, setErrors] = useState([]);
-    const [fullname, setFullname] = useState('');
+
 
 
     const submitForm = e => {
@@ -28,10 +29,10 @@ const SignUp = props => {
                 },
                 credentials: 'include',
                 body: JSON.stringify({
-                    canfollow,
+                    firstName,
                     email,
                     username,
-                    fullname,
+                    lastName,
                     password,
                     password2
                 })
@@ -51,76 +52,64 @@ const SignUp = props => {
     }
 
     return (
-        <div className="authContain">
-            <div className="authForm">
-                <div className="authFormDiv">
-                    <h1 style={{
-                        margin: `22px auto 12px`,
-                        fontSize: `3em`,
-                        height: `20px`,
-                        marginBlockStart: `1em`,
-                        marginBlockEnd: `1em`
-                    }}>Backyard Olympics</h1>
-                    <h2 style={{
-                        color: `#8e8e8e`,
-                        fontSize: `17px`,
-                        fontWeight: `600`,
-                        lineHeight: `20px`,
-                        margin: `0 40px 10px`,
-                        textAlign: `center`
-                    }}>Sign up to see photos and videos from your friends.</h2>
-                    <div className="authFormInnerWrap">
-                        <form onSubmit={submitForm}>
-                            {errors.length ? errors.map(err => <li key={err} >{err}</li>) : ''}
-                            <input
-                                className="input"
-                                type="text"
-                                placeholder="Email"
-                                value={email}
-                                onChange={e => setEmail(e.target.value)} name="email" />
-                            <input
-                                className="input"
-                                type="text"
-                                placeholder="Name"
-                                value={fullname}
-                                onChange={e => setFullname(e.target.value)} name="fullname" />
-                            <input
-                                className="input"
-                                type="text"
-                                placeholder="Username"
-                                value={username}
-                                onChange={e => setUsername(e.target.value)} name="username" />
-                            {/* <input
-                                // className="input"
-                                type="checkbox"
-                                checked={canfollow}
-                                onChange={e => setCanfollow(e.target.checked)} name="canfollow" />
-                            <label htmlFor="canfollow">Click to allow others to follow you.</label> */}
-                            <input
-                                className="input"
-                                type="password"
-                                placeholder="Password"
-                                value={password}
-                                onChange={e => setPassword(e.target.value)} name="password" />
-                            <input
-                                className="input"
-                                type="password"
-                                placeholder="Confirm password"
-                                value={password2}
-                                onChange={e => setPassword2(e.target.value)} name="password2" />
-
-                            <button type="submit" className="button has-background-link has-text-white" style={{
-                                height: `2rem`,
-                                paddingLeft: `.5em`,
-                                paddingRight: `.5em`,
-                                margin: `8px 40px`,
-                                fontWeight: `600`
-
-                            }}>Sign Up</button>
-                        </form>
-                    </div>
+        <div className="sign-up-container container">
+            <form className="sign-up-form" onSubmit={submitForm}>
+                <h3 className='text-center signup-header multicolortext'>Create a Backyard Olympic's Account</h3>
+                <div className='login-div'>
+                    <p className="form-p">Create a new account below</p>
+                    <a className="form-link" href=" /login">or sign in here.</a>
                 </div>
-            </div>
+                {errors.length ? errors.map(err => <li key={err} >{err}</li>) : ''}
+                <label for="firstname">First Name</label>
+                <input onChange={e => setFirstName(e.target.value)}
+                    value={firstName}
+                    className='form-control'
+                    type="text"
+                    id="firstname"
+                    placeholder="First Name"
+                    required />
+                <label for="lastname">Last Name</label>
+                <input onChange={e => setLastName(e.target.value)}
+                    value={lastName}
+                    className='form-control'
+                    id="lastname"
+                    type="text"
+                    placeholder="Last Name"
+                    required />
+                <label for="username">Username</label>
+                <input onChange={e => setUsername(e.target.value)}
+                    value={username}
+                    className='form-control'
+                    type="text"
+                    id="username"
+                    placeholder="username"
+                    required />
+                <label for="email">Email</label>
+                <input onChange={e => setEmail(e.target.value)}
+                    value={email}
+                    className='form-control'
+                    type="email"
+                    placeholder="Email"
+                    id="email"
+                    required />
+                <label for="password">Password</label>
+                <input onChange={e => setPassword(e.target.value)}
+                    value={password}
+                    className='form-control'
+                    type="password"
+                    placeholder="Password"
+                    id="password"
+                    required />
+                <label for="confirmpassword">Confirm Password</label>
+                <input onChange={e => setPassword2(e.target.value)}
+                    value={password2}
+                    className='form-control'
+                    type="password"
+                    placeholder="Confirm Password"
+                    id="confirmpassword"
+                    required />
+                <button className="btn btn-block btn-primary button-signin" type="submit">Sign Up</button>
+            </form>
         </div>
     );
 };
