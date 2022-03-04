@@ -1,3 +1,4 @@
+from msilib.schema import Class
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -13,7 +14,7 @@ class User(db.Model, UserMixin):
     lastName = db.Column(db.String(40))
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
-    hashed_password = db.Column(db.String(100), nullable=False)
+    hashed_password = db.Column(db.String(255), nullable=False)
 
     @property
     def password(self):
@@ -40,4 +41,25 @@ class User(db.Model, UserMixin):
             "username": self.username,
             "email": self.email,
             "firstName": self.firstName
+        }
+
+
+class Team(db.Model):
+    __tablename__ = "teams"
+
+    id = db.Column(db.Integer, primary_key=True)
+    teamName = db.Column(db.String(150))
+    imgURL = db.Column(db.String(255))
+    teamMemberOne = db.Column(
+        db.Integer, db.ForeignKey("users.id"), nullable=False)
+    teamMemberTwo = db.Column(
+        db.Integer, db.ForeignKey("users.id"), nullable=False)
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "teamName": self.teamName,
+            "imgURL": self.imgURL,
+            "teamMemberOne": self.teamMemberOne,
+            "teamMemberTwo": self.teamMemberTwo,
         }

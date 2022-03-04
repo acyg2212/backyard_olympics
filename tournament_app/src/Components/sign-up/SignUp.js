@@ -22,7 +22,7 @@ const SignUp = props => {
         e.preventDefault();
         // Make the following an IIFE?
         async function signupUser() {
-            const response = await fetchWithCSRF(`/api/users/`, {
+            const response = await fetchWithCSRF(`/api/users/signup`, {
                 method: 'POST',
                 headers: {
                     "Content-Type": "application/json",

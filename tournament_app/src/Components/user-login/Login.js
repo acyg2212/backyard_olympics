@@ -5,7 +5,7 @@ import "./Login.css"
 
 function LogIn(props) {
     let navigate = useNavigate();
-    const [usernameoremail, setUsernameoremail] = useState("acyg22");
+    const [email, setemail] = useState("acyg22");
     const [password, setPassword] = useState("password");
     const [errors, setErrors] = useState([]);
     const { fetchWithCSRF, setCurrentUserId, setCurrentUser } = useContext(UserContext);
@@ -23,7 +23,7 @@ function LogIn(props) {
                 },
                 credentials: 'include',
                 body: JSON.stringify({
-                    usernameoremail,
+                    email,
                     password
                 })
             });
@@ -57,8 +57,8 @@ function LogIn(props) {
                             <input
                                 type="text"
                                 placeholder="Username or email"
-                                value={usernameoremail}
-                                onChange={(e) => setUsernameoremail(e.target.value)}
+                                value={email}
+                                onChange={(e) => setemail(e.target.value)}
                                 name="usernameoremail"
                                 className='form-control' />
                             Password
