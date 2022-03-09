@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { useNavigate } from 'react-router-dom'
 import UserContext from '../../UserContext'
 import "./Login.css"
+import homeImage from "../../assets/app_image.PNG"
 
 function LogIn(props) {
     let navigate = useNavigate();
@@ -43,6 +44,7 @@ function LogIn(props) {
         <div className="authContain container">
             <div className="authForm">
                 <div className="authFormDiv">
+                    <img className="rounded-circle home-image img-fluid mx-auto d-block" src={homeImage} alt="A sign for backyard olympics" />
                     <h1 className="text-center multicolortext">
                         Backyard Olympics
                     </h1>

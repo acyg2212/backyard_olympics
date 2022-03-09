@@ -11,7 +11,7 @@ function HomePage() {
   let navigate = useNavigate()
   let { teams, setTeams } = useContext(TeamsContext)
   let { role, setRole } = useContext(UserContext)
-  let [redirect, setRedirect] = useState(false)
+  //let [redirect, setRedirect] = useState(false)
   console.log(teams)
 
   let addTeam = () => {

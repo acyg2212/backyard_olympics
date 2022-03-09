@@ -1,0 +1,16 @@
+.team-card{
+    display: flex;
+}
+
+.teamMember-div{
+    margin-left: 55px;
+    margin-top: 10px;
+}
+
+.teamName-div{
+    margin-right: 20px;
+}
+
+p{
+    font-weight: bold;
+}
