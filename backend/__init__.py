@@ -8,12 +8,14 @@ from flask_login import LoginManager, current_user
 from flask_migrate import Migrate
 from backend.models import db, User
 from backend.API.user_routes import user_routes
+from backend.API.team_routes import team_routes
 
 app = Flask(__name__)
 db.init_app(app)
 migrate = Migrate(app, db)
 app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
+app.register_blueprint(team_routes, url_prefix='/api/teams')
 login_manager = LoginManager(app)
 CSRFProtect(app)
 
@@ -48,4 +50,5 @@ def react_root(path):
 @app.route('/api/csrf/restore')
 def restore_csrf():
     id = current_user.id if current_user.is_authenticated else None
-    return {'csrf_token': generate_csrf(), "current_user_id": id}
+    role = current_user.role if current_user.is_authenticated else None
+    return {'csrf_token': generate_csrf(), "current_user_id": id, 'role': role}

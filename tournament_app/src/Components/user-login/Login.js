@@ -46,7 +46,7 @@ function LogIn(props) {
                     <h1 className="text-center multicolortext">
                         Backyard Olympics
                     </h1>
-                    <div class="signup-link-div">
+                    <div className="signup-link-div">
                         <p className="form-p text-center">Sign in below or</p>
                         <a className="form-link" href='/sign-up'>create an account.</a>
                     </div>

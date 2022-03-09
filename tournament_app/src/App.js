@@ -20,6 +20,7 @@ function App() {
   let [teams, setTeams] = useState([]);
   let [match, setMatch] = useState(null);
   let [events, setEvents] = useState([])
+  let [role, setRole] = useState('')
   const [fetchWithCSRF, setFetchWithCSRF] = useState(() => fetch);
   const [currentUserId, setCurrentUserId] = useState(null);
   const [currentUser, setCurrentUser] = useState(null);
@@ -30,7 +31,9 @@ function App() {
     currentUserId,
     setCurrentUserId,
     currentUser,
-    setCurrentUser
+    setCurrentUser,
+    role,
+    setRole
   };
 
   const teamContextValue = {
@@ -84,7 +87,7 @@ function App() {
           }
         });
         if (authData.current_user_id) {
-
+          setRole(authData.role)
           setCurrentUserId(authData.current_user_id)
         }
       }

@@ -51,6 +51,7 @@ def signup():
     firstName = request.json.get("firstName", None)
     lastName = request.json.get("lastName", None)
     email = request.json.get('email', None)
+    role = "player"
 
     if not username or not password or not firstName or not lastName or not email:
         return {"errors": ["Missing required parameters"]}, 400
@@ -64,6 +65,7 @@ def signup():
         lastName=lastName,
         email=email,
         password=password,
+        role=role
 
     )
     db.session.add(new_user)

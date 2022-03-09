@@ -1,4 +1,4 @@
-from msilib.schema import Class
+
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -15,6 +15,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+    role = db.Column(db.String(100), nullable=False)
 
     @property
     def password(self):
@@ -40,7 +41,8 @@ class User(db.Model, UserMixin):
             "id": self.id,
             "username": self.username,
             "email": self.email,
-            "firstName": self.firstName
+            "firstName": self.firstName,
+            "role": self.role
         }
 
 
